@@ -1,7 +1,7 @@
 const fs = require("fs");
 
 function deleteFolder(req, res) {
-    const { path, type } = req.data;
+    const { path, type } = req.query;
 
     try {
         if (type == "directory") fs.rmdirSync(`./fileManager/${path}`);

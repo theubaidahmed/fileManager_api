@@ -1,20 +1,21 @@
 const fs = require("fs");
 
 function create(req, res) {
-    const { path } = req.data;
-    const { folderName, fileName } = req.body;
-    console.log(folderName, fileName);
-
+    const { path } = req.query;
+    const { name, type } = req.body;
+    type.toLowerCase();
+    console.log(path, name, type);
     try {
-        const folders =
-            folderName === undefined
-                ? fs.writeFileSync(`./fileManager/${path}/${fileName}`, fileName)
-                : fs.mkdirSync(`./fileManager/${path}/${folderName}`);
+        const contents =
+            type == "folder"
+                ? fs.mkdirSync(`./fileManager/${path}/${name}`)
+                : fs.writeFileSync(`./fileManager/${path}/${name}.${type}`, name);
         res.json({
-            folders,
+            contents,
             success: 1,
         });
-    } catch {
+    } catch (e) {
+        console.log(e);
         res.status(500).end("Something went wrong");
     }
 }

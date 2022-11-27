@@ -1,14 +1,11 @@
 const fs = require("fs");
 
 function rename(req, res) {
-    const { path } = req.data;
-    const { folderName, newFolderName } = req.body;
+    const { path } = req.query;
+    const { name, newName } = req.body;
 
     try {
-        fs.renameSync(
-            `./fileManager/${path}/${folderName}`,
-            `./fileManager/${path}/${newFolderName}`
-        );
+        fs.renameSync(`./fileManager/${path}/${name}`, `./fileManager/${path}/${newName}`);
         res.json({
             success: 1,
         });
