@@ -5,7 +5,9 @@ module.exports = function (err, req, res, next) {
             message: err.message,
         });
     }
-    res.json({
+    console.log(err);
+    res.status(500).json({
+        success: 0,
         error: err,
     });
 };

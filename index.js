@@ -12,12 +12,14 @@ const commonRouter = require("./routers/commonRouter");
 // Middlewares
 const validatePath = require("./middleware/validatePath");
 const errorHandler = require("./utilities/errorHandler");
+const fileRouter = require("./routers/files");
 
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(validatePath);
 
 app.use("/", commonRouter);
+app.use("/files", fileRouter);
 
 app.use(errorHandler);
 

@@ -1,8 +1,9 @@
 const fs = require("fs");
 
 function validatePath(req, res, next) {
-    let { path = "/" } = req.query;
-    console.log("path => " + path);
+    let { path } = req.query;
+
+    if (!path) path = "/";
 
     // Checking if path is a string
     if (typeof path !== "string") return res.end("invalid request");
