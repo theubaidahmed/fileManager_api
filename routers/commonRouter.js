@@ -1,11 +1,13 @@
 const express = require("express");
 const create = require("./../routes/create");
-const deleteFolder = require("./../routes/deleteFolder");
+const deleteFiles = require("../routes/deleteFiles");
 const listing = require("./../routes/listing");
 const rename = require("./../routes/rename");
+const { bin, deleteBinFiles } = require("./../routes/bin");
 
 const validateFolder = require("./../middleware/validateFolder");
 const shouldExist = require("./../middleware/shouldExist");
+const recents = require("../routes/recents");
 
 const commonRouter = new express.Router();
 
@@ -16,7 +18,10 @@ commonRouter.post(
     shouldExist(false, req => req.query.path + `/${req.body.name}`),
     create
 );
-commonRouter.delete("/", shouldExist(true), deleteFolder);
+commonRouter.delete("/", shouldExist(true), deleteFiles);
 commonRouter.patch("/", shouldExist(true), validateFolder("newFolderName"), rename);
+commonRouter.get("/recents", recents);
+commonRouter.get("/recycle-bin", bin);
+commonRouter.delete("/recycle-bin/:name", deleteBinFiles);
 
 module.exports = commonRouter;

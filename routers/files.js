@@ -1,10 +1,13 @@
 const express = require("express");
-const getFilesWithTypes = require("../routes/files/getFilesWithTypes");
+const getFilesProps = require("../routes/files/getFilesProps");
+const getFiles = require("../routes/files/getFiles");
 const search = require("../routes/files/search");
 
 const fileRouter = new express.Router();
 
 fileRouter.get("/search", search);
-fileRouter.get("/all", getFilesWithTypes);
+fileRouter.get("/", getFiles);
+fileRouter.get("/properties", getFilesProps);
+// fileRouter.get("/meta", getFilesWithTypes);
 
 module.exports = fileRouter;
