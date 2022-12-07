@@ -1,28 +1,15 @@
 const fs = require("fs");
-const pathModule = require("path");
+// const Recent = require("./../utilities/Recents");
 
 module.exports = function (req, res, next) {
-    const path = "./fileManager/";
-    const recents = [];
+    const path = "./fileManager/indexes/recents.json";
 
-    getFiles(path);
+    // const recents = new Recent();
+    // recents.timeExceed();
+    const contents = JSON.parse(fs.readFileSync(path));
 
-    function getFiles(path) {
-        const contents = fs.readdirSync(path, { withFileTypes: true });
-        contents.forEach(file => {
-            if (file.isDirectory()) return getFiles(pathModule.join(path, file.name));
-
-            const fileProps = fs.statSync(pathModule.join(path, file.name));
-            if (fileProps.birthtimeMs > new Date().setHours(-48)) {
-                recents.push({
-                    file: file.name,
-                    type: "file",
-                });
-            }
-        });
-    }
     res.json({
         success: 1,
-        recents,
+        recents: Object.values(contents),
     });
 };

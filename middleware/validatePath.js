@@ -15,7 +15,9 @@ function validatePath(req, res, next) {
     if (/\.\.\//.test(path)) return res.end("Going backward is not allowed; Don't try to be smart");
 
     // sanitize the path
-    path = req.query.path = "./fileManager/" + path.replace(/^\/|\/$/g, "");
+    path = req.query.path = "./fileManager/files/" + path.replace(/^\/|\/$/g, "");
+
+    console.log(path);
 
     next();
 }

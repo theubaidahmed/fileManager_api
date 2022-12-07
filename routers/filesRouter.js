@@ -1,5 +1,5 @@
 const express = require("express");
-const getFilesProps = require("../routes/files/getFilesProps");
+const getFilesProps = require("./../routes/files/getFilesProps");
 const getFiles = require("../routes/files/getFiles");
 const search = require("../routes/files/search");
 

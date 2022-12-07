@@ -1,7 +1,9 @@
 const fs = require("fs");
 
-module.exports = function (req, res, next) {
+module.exports = function (req, res) {
+    console.log("hello");
     const filePath = req.query.path;
+    console.log(filePath);
 
     const props = fs.statSync(filePath);
     console.log(props);

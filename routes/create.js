@@ -1,8 +1,10 @@
 const fs = require("fs");
+const Recents = require("./../utilities/Recents");
 
 function create(req, res) {
     const { path } = req.query;
     const { name, type } = req.body;
+    const recents = new Recents();
 
     const fullPath = `${path}/${name}`;
 
@@ -13,6 +15,8 @@ function create(req, res) {
     } else {
         throw new Error("type not supported");
     }
+
+    recents.add(path);
 
     res.json({
         success: 1,

@@ -1,12 +1,9 @@
-const fs = require("fs");
-const pathModule = require("path");
+const RecycleBin = require("./../utilities/RecycleBin");
 
 function deleteFiles(req, res) {
     const { path } = req.query;
-    const fileName = pathModule.basename(path);
-    const binPath = "./bin";
-
-    fs.renameSync(path, pathModule.join(binPath, fileName));
+    const recycleBin = new RecycleBin();
+    recycleBin.deleteFile(path, (files = ""));
     res.json({
         success: 1,
     });

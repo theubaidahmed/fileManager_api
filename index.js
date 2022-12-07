@@ -8,11 +8,12 @@ const morgan = require("morgan");
 
 // Routers
 const commonRouter = require("./routers/commonRouter");
+const fileRouter = require("./routers/filesRouter");
+const recyclebinRouter = require("./routers/recyclebinRouter");
 
 // Middlewares
 const validatePath = require("./middleware/validatePath");
 const errorHandler = require("./utilities/errorHandler");
-const fileRouter = require("./routers/files");
 
 app.use(express.json());
 app.use(morgan("dev"));
@@ -20,6 +21,7 @@ app.use(validatePath);
 
 app.use("/", commonRouter);
 app.use("/files", fileRouter);
+app.use("/recyclebin", recyclebinRouter);
 
 app.use(errorHandler);
 
@@ -27,8 +29,14 @@ app.listen(process.env.PORT, () => {
     console.log("server started on port " + process.env.PORT);
 });
 
-//to do
+// ---------------------- To Do ---------------------- //
+// Move and Copy
+// Recent Indexing done
+// Restore done
+// Bulk delete from a single folder
+// Node js course
+// --------------------------------------------------- //
 
-//meta data
-//recycle bin
-//recent
+//--------------------- Errors ----------------------- //
+//Files routers not working properly kindly check it;
+// --------------------------------------------------- //
