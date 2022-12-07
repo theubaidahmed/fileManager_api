@@ -21,7 +21,7 @@ app.use(validatePath);
 
 app.use("/", commonRouter);
 app.use("/files", fileRouter);
-app.use("/recyclebin", recyclebinRouter);
+app.use("/recycle-bin", recyclebinRouter);
 
 app.use(errorHandler);
 
@@ -38,5 +38,5 @@ app.listen(process.env.PORT, () => {
 // --------------------------------------------------- //
 
 //--------------------- Errors ----------------------- //
-//Files routers not working properly kindly check it;
+
 // --------------------------------------------------- //

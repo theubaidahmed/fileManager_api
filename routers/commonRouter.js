@@ -13,15 +13,17 @@ const copy = require("../routes/copy");
 const commonRouter = new express.Router();
 
 commonRouter.get("/", shouldExist(true), listing);
+commonRouter.get("/recents", recents);
+
 commonRouter.post(
     "/",
     validateFolder("folderName"),
     shouldExist(false, req => req.query.path + `/${req.body.name}`),
     create
 );
+
 commonRouter.patch("/", shouldExist(true), validateFolder("newFolderName"), rename);
 commonRouter.patch("/delete", shouldExist(true), deleteFiles);
-commonRouter.get("/recents", recents);
 commonRouter.patch("/move", move);
 commonRouter.patch("/copy", copy);
 
