@@ -24,13 +24,17 @@ class RecycleBin {
         fs.renameSync(path, this.binPath + name);
         this.indexes[binName] = {
             name,
-            path: pathModule.dirname(path),
+            path,
         };
         this.writeIndexes();
     }
 
     getFiles() {
-        return Object.values(this.indexes);
+        const files = [];
+        for (let file in this.indexes) {
+            files.push({ [file]: this.indexes[file] });
+        }
+        return files;
     }
 
     deleteForever(name) {
@@ -40,6 +44,7 @@ class RecycleBin {
             if (this.indexes[file].name === name) {
                 this.indexes[file] = undefined;
                 this.writeIndexes();
+                break;
             }
         }
 
@@ -53,8 +58,16 @@ class RecycleBin {
         }
     }
 
-    restore(path) {
-        this.indexes = JSON.parse(fs.readFileSync(this.indexPath));
+    restore(binName) {
+        for (let file in this.indexes) {
+            if (binName === file) {
+                const name = this.indexes[file].name;
+                const path = this.indexes[file].path;
+                fs.renameSync(this.binPath + name, path);
+                this.indexes[file] = undefined;
+                this.writeIndexes();
+            }
+        }
     }
 }
 

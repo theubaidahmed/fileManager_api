@@ -32,7 +32,7 @@ app.listen(process.env.PORT, () => {
 // ---------------------- To Do ---------------------- //
 // Move and Copy
 // Recent Indexing done
-// Restore done
+// Restore
 // Bulk delete from a single folder
 // Node js course
 // --------------------------------------------------- //

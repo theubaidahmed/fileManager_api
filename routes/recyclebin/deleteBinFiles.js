@@ -1,4 +1,3 @@
-const fs = require("fs");
 const RecycleBin = require("./../../utilities/RecycleBin");
 
 module.exports = function (req, res) {

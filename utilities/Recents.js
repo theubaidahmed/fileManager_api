@@ -27,11 +27,11 @@ class Recents {
         fs.writeFileSync(this.indexPath, JSON.stringify(this.indexes));
     }
 
-    add(path) {
-        this.indexes.push({
+    add(path, name) {
+        this.indexes[name] = {
             path,
             time: Date.now(),
-        });
+        };
         this.writeIndexes();
     }
 }

@@ -16,7 +16,7 @@ function create(req, res) {
         throw new Error("type not supported");
     }
 
-    recents.add(path);
+    recents.add(path, name);
 
     res.json({
         success: 1,

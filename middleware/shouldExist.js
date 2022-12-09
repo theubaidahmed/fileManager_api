@@ -5,7 +5,7 @@ module.exports = function (shouldExist, pathCb) {
         const path = typeof pathCb === "function" ? pathCb(req) : req.query.path;
         const doesExist = fs.existsSync(path);
 
-        console.log("does" + doesExist);
+        console.log("does exists" + doesExist);
 
         if (!(doesExist ^ shouldExist)) return next();
 
